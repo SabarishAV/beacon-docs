@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BEACON — Complete System Overview</title>
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="assets/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0b0f1a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -36,6 +42,11 @@
         background: var(--bg);
         color: var(--text);
         line-height: 1.65;
+        overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
       }
       a {
         color: var(--accent);
@@ -53,32 +64,86 @@
         background: rgba(11, 15, 26, 0.92);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
-        padding: 0 24px;
+        padding: 0 clamp(12px, 3vw, 24px);
       }
       .nav-inner {
         max-width: 1280px;
         margin: auto;
         display: flex;
         align-items: center;
-        gap: 24px;
-        height: 56px;
-        overflow-x: auto;
+        gap: clamp(12px, 2vw, 24px);
+        min-height: 56px;
+        padding: 8px 0;
       }
-      .nav-inner a {
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text) !important;
+        font-weight: 700;
+        font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+        margin-right: auto;
+        text-decoration: none !important;
+        flex-shrink: 0;
+      }
+      .nav-brand:hover {
+        text-decoration: none !important;
+      }
+      .nav-brand img {
+        width: clamp(2rem, 6vw, 2.75rem);
+        height: auto;
+        display: block;
+        flex-shrink: 0;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 2vw, 20px);
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .nav-links a {
         color: var(--muted);
-        font-size: 0.85rem;
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
         font-weight: 500;
         white-space: nowrap;
         text-decoration: none;
+        padding: 6px 0;
       }
-      .nav-inner a:hover {
+      .nav-links a:hover {
         color: var(--text);
       }
-      .nav-brand {
-        color: var(--text) !important;
-        font-weight: 700;
-        font-size: 1rem !important;
-        margin-right: auto;
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        margin-left: 8px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: transform 0.25s, opacity 0.25s;
+      }
+      .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
 
       /* Hero */
@@ -163,11 +228,11 @@
       main {
         max-width: 1280px;
         margin: auto;
-        padding: 0 24px 80px;
+        padding: 0 clamp(16px, 4vw, 24px) clamp(48px, 8vw, 80px);
       }
       section {
-        margin-top: 64px;
-        scroll-margin-top: 72px;
+        margin-top: clamp(40px, 6vw, 64px);
+        scroll-margin-top: 80px;
       }
       .section-label {
         font-size: 0.7rem;
@@ -191,24 +256,24 @@
       /* Cards */
       .grid-2 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
         gap: 20px;
       }
       .grid-3 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
         gap: 20px;
       }
       .grid-4 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
         gap: 16px;
       }
       .card {
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 24px;
+        padding: clamp(16px, 3vw, 24px);
       }
       .card h3 {
         font-size: 1.05rem;
@@ -237,14 +302,16 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 28px;
+        padding: clamp(12px, 3vw, 28px);
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         margin: 24px 0;
       }
       .diagram-wrap svg {
         display: block;
         margin: auto;
         max-width: 100%;
+        min-width: 280px;
         height: auto;
       }
       .diagram-caption {
@@ -288,6 +355,7 @@
       @media (max-width: 700px) {
         .cap-showcase {
           grid-template-columns: 1fr;
+          padding: clamp(16px, 4vw, 24px);
         }
       }
 
@@ -370,16 +438,25 @@
       }
 
       /* Tables */
+      .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
       table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.875rem;
+        font-size: clamp(0.75rem, 2vw, 0.875rem);
+        min-width: 520px;
       }
       th,
       td {
-        padding: 12px 16px;
+        padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 16px);
         text-align: left;
         border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      td code {
+        word-break: break-all;
       }
       th {
         color: var(--muted);
@@ -473,36 +550,144 @@
 
       footer {
         text-align: center;
-        padding: 40px 24px;
+        padding: clamp(24px, 5vw, 40px) clamp(16px, 4vw, 24px);
         border-top: 1px solid var(--border);
         color: var(--muted);
-        font-size: 0.875rem;
+        font-size: clamp(0.8rem, 2vw, 0.875rem);
+      }
+
+      /* Responsive — tablet & mobile */
+      @media (max-width: 900px) {
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: rgba(11, 15, 26, 0.98);
+          border-bottom: 1px solid var(--border);
+          padding: 8px clamp(12px, 3vw, 24px) 16px;
+          max-height: calc(100vh - 56px);
+          overflow-y: auto;
+        }
+        .nav-links.is-open {
+          display: flex;
+        }
+        .nav-links a {
+          padding: 12px 8px;
+          border-bottom: 1px solid var(--border);
+          white-space: normal;
+        }
+        .nav-links a:last-child {
+          border-bottom: none;
+        }
+        nav {
+          position: sticky;
+        }
+        .nav-inner {
+          position: relative;
+          flex-wrap: wrap;
+        }
+        .repo-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .flow-block {
+          padding: 16px 16px 4px;
+        }
+        .flow-steps {
+          padding-left: 40px;
+        }
+        .flow-step::before {
+          left: -40px;
+          width: 28px;
+          height: 28px;
+          line-height: 28px;
+          font-size: 0.75rem;
+        }
+        .flow-step h4 {
+          line-height: 1.4;
+          padding-top: 2px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero {
+          padding: 48px 16px 40px;
+        }
+        .hero-repos {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .repo-pill {
+          justify-content: center;
+        }
+        section h3 {
+          font-size: 1rem;
+        }
+        .mono {
+          font-size: 0.7rem;
+          padding: 12px;
+        }
+        table {
+          min-width: 480px;
+        }
+        .diagram-wrap svg {
+          min-width: 320px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .nav-brand span {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .nav-toggle span {
+          transition: none;
+        }
       }
     </style>
   </head>
   <body>
     <nav>
       <div class="nav-inner">
-        <a class="nav-brand" href="#"
-        style="display: flex;justify-content: center;align-items: center;"
-          ><img
-            src="./assets/beacon_logo_new.png"
-            alt="logo"
-            style="width: 3rem"
-          />
-          BEACON</a
+        <a class="nav-brand" href="#">
+          <img src="./assets/beacon_logo_new.png" alt="BEACON logo" width="44" height="44" />
+          <span>BEACON</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
         >
-        <a href="#overview">Overview</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#hardware">Hardware</a>
-        <a href="#camera">Camera AI</a>
-        <a href="#backend">Backend</a>
-        <a href="#mobile">Mobile App</a>
-        <a href="#flows">Data Flows</a>
-        <a href="#api">API</a>
-        <a href="#database">Database</a>
-        <a href="#features">Features</a>
-        <a href="#stack">Tech Stack</a>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#hardware">Hardware</a>
+          <a href="#camera">Camera AI</a>
+          <a href="#backend">Backend</a>
+          <a href="#mobile">Mobile App</a>
+          <a href="#flows">Data Flows</a>
+          <a href="#api">API</a>
+          <a href="#database">Database</a>
+          <a href="#features">Features</a>
+          <a href="#stack">Tech Stack</a>
+        </div>
       </div>
     </nav>
 
@@ -1542,6 +1727,7 @@
 
         <h3 style="margin: 32px 0 12px">Key Scripts</h3>
         <div class="card" style="padding: 0; overflow: hidden">
+          <div class="table-wrap">
           <table>
             <thead>
               <tr>
@@ -1586,6 +1772,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
 
         <h3 style="margin: 24px 0 12px">API Payload (Camera → Backend)</h3>
@@ -2113,6 +2300,7 @@
         </p>
 
         <div class="card" style="padding: 0; overflow: hidden">
+          <div class="table-wrap">
           <table>
             <thead>
               <tr>
@@ -2227,6 +2415,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
       </section>
 
@@ -2521,6 +2710,7 @@
         </p>
 
         <div class="card" style="padding: 0; overflow: hidden">
+          <div class="table-wrap">
           <table>
             <thead>
               <tr>
@@ -2617,6 +2807,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
       </section>
 
@@ -2716,5 +2907,36 @@
         Built for accessibility · MIT License
       </p>
     </footer>
+    <script>
+      (function () {
+        var toggle = document.querySelector(".nav-toggle");
+        var links = document.getElementById("nav-links");
+        if (!toggle || !links) return;
+
+        function closeMenu() {
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Open navigation menu");
+          links.classList.remove("is-open");
+        }
+
+        toggle.addEventListener("click", function () {
+          var open = toggle.getAttribute("aria-expanded") === "true";
+          toggle.setAttribute("aria-expanded", open ? "false" : "true");
+          toggle.setAttribute(
+            "aria-label",
+            open ? "Open navigation menu" : "Close navigation menu"
+          );
+          links.classList.toggle("is-open", !open);
+        });
+
+        links.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", closeMenu);
+        });
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 900) closeMenu();
+        });
+      })();
+    </script>
   </body>
 </html>
