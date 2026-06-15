@@ -126,7 +126,9 @@
         height: 2px;
         background: var(--text);
         border-radius: 2px;
-        transition: transform 0.25s, opacity 0.25s;
+        transition:
+          transform 0.25s,
+          opacity 0.25s;
       }
       .nav-toggle[aria-expanded="true"] span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
@@ -288,7 +290,9 @@
         text-decoration: none !important;
         border: 1px solid transparent;
         cursor: pointer;
-        transition: background 0.2s, border-color 0.2s;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
       }
       .btn-primary {
         background: var(--accent);
@@ -372,7 +376,9 @@
         border-radius: var(--radius);
         padding: 28px 24px 24px;
         text-align: center;
-        transition: border-color 0.2s, transform 0.2s;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
       }
       .team-card:hover {
         border-color: rgba(59, 130, 246, 0.4);
@@ -424,7 +430,10 @@
         border: 1px solid var(--border);
         color: var(--muted);
         text-decoration: none !important;
-        transition: color 0.2s, border-color 0.2s, background 0.2s;
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          background 0.2s;
       }
       .social-btn:hover {
         color: var(--text);
@@ -501,7 +510,12 @@
     <nav>
       <div class="nav-inner">
         <a class="nav-brand" href="index.html">
-          <img src="assets/beacon_logo_new.png" alt="BEACON logo" width="44" height="44" />
+          <img
+            src="assets/beacon_logo_new.png"
+            alt="BEACON logo"
+            width="44"
+            height="44"
+          />
           <span>BEACON</span>
         </a>
         <button
@@ -570,7 +584,7 @@
               <div class="doc-icon pdf">📄</div>
               <div>
                 <h3>Project Report</h3>
-                <p class="doc-meta">B.E.A.C.O.N.pdf · PDF document</p>
+                <p class="doc-meta">beacon-report.pdf · PDF document</p>
               </div>
             </div>
             <p style="color: var(--muted); font-size: 0.875rem">
@@ -580,14 +594,13 @@
             <div class="doc-actions">
               <a
                 class="btn btn-primary"
-                href="assets/files/B.E.A.C.O.N.pdf"
+                target="_blank"
+                href="assets/files/beacon-report.pdf"
                 download
               >
                 ↓ Download PDF
               </a>
-              <a class="btn btn-secondary" href="#pdf-preview">
-                View below
-              </a>
+              <a class="btn btn-secondary" href="#pdf-preview"> View below </a>
             </div>
           </div>
 
@@ -622,10 +635,10 @@
 
         <div class="pdf-viewer" id="pdf-preview">
           <div class="pdf-viewer-header">
-            <h3>📄 Report Preview — B.E.A.C.O.N.pdf</h3>
+            <h3>📄 Report Preview — beacon-report.pdf</h3>
             <a
               class="btn btn-secondary"
-              href="assets/files/B.E.A.C.O.N.pdf"
+              href="assets/files/beacon-report.pdf"
               target="_blank"
               rel="noopener"
             >
@@ -634,7 +647,7 @@
           </div>
           <div class="pdf-frame-wrap">
             <iframe
-              src="assets/files/B.E.A.C.O.N.pdf"
+              src="assets/files/beacon-report.pdf"
               title="BEACON project report PDF preview"
             ></iframe>
             <div class="pdf-fallback" id="pdf-fallback">
@@ -644,7 +657,7 @@
               </p>
               <a
                 class="btn btn-primary"
-                href="assets/files/B.E.A.C.O.N.pdf"
+                href="assets/files/beacon-report.pdf"
                 target="_blank"
                 rel="noopener"
               >
@@ -866,7 +879,9 @@
         <a href="index.html">System Documentation</a> ·
         <a href="https://github.com/SabarishAV/beacon-camera">beacon-camera</a>
         ·
-        <a href="https://github.com/SabarishAV/beacon-backend">beacon-backend</a>
+        <a href="https://github.com/SabarishAV/beacon-backend"
+          >beacon-backend</a
+        >
         ·
         <a href="https://github.com/SabarishAV/beacon-mobile">beacon-mobile</a>
       </p>
@@ -887,7 +902,7 @@
             toggle.setAttribute("aria-expanded", open ? "false" : "true");
             toggle.setAttribute(
               "aria-label",
-              open ? "Open navigation menu" : "Close navigation menu"
+              open ? "Open navigation menu" : "Close navigation menu",
             );
             links.classList.toggle("is-open", !open);
           });
